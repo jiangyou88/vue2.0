@@ -1,0 +1,26 @@
+{
+  "name": "vue2.0",
+  "version": "1.0.0",
+  "description": "vue",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangyou88/vue2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangyou88/vue2.0/issues"
+  },
+  "homepage": "https://github.com/jiangyou88/vue2.0#readme"
+}
