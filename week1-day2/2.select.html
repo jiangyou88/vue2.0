@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <select id="select">
+        <option value="1">你好</option>
+        <option value="2">不好</option>
+        <option value="3">我好</option>
+    </select>
+    <script>
+        let oSelect=document.getElementById("select");
+        oSelect.onchange=function(){
+            console.log(this.value);
+        }
+    </script>
+</body>
+</html>
