@@ -22,3 +22,6 @@
 ```
 npm install vue axios bootstrap
 ```
+## vscode 访问http-server
+- npm install -g http-server
+- 在终端 http-server

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" src="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered">
+                    <caption class="h2">购物车</caption>
+                    <tr>
+                        <th>全选
+                            <input type="checkbox" />
+                        </th>
+                        <td>商品</td>
+                        <td>单价</td>
+                        <td>数量</td>
+                        <td>小计</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr v-for="(product,index) in products">
+                        <td><input type="checkbox" v-model="product.isSelected" /></td>
+                        <td><img :src="product.produtCover" :alt="product.productName" />{{product.productName}}</td>
+                        <td>{{product.productPrice}}</td>
+                        <!-- .number是让输入框的值变成数字类型 .lazy当输入框失去焦点时更新数据 -->
+                        <td><input type="number" v-model.number="product.productCount" /></td>
+                        <td>{{product.productCount*product.productPrice}}</td>
+                        <td><button class="btn btn-danger">删除</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <!-- 基于promise -->
+    <script src="node_modules/axios/dist/axios.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            //专门用来发送ajax的方法
+            created() {//在数据被初始化后会调用，this指向的也是vm实例，钩子函数
+                this.getData();
+            },
+            methods: {
+                getData() {
+                    axios.get("./cart.json").then(res => {
+                        this.products = res.data;//获取数据 需要的是res.data
+                    }, err => {
+                        console.log(err);
+                    })
+                }
+            },
+            data: {
+                products: []
+            }
+        })
+    </script>
+</body>
+
+</html>
