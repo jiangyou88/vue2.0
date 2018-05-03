@@ -21,6 +21,7 @@
 ## 安装
 ```
 npm install vue axios bootstrap
+npm install animate.css
 ```
 ## vscode 访问http-server
 - npm install -g http-server
