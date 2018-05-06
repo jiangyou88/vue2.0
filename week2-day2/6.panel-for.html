@@ -11,16 +11,12 @@
 
 <body>
     <div id="app">
-        <panel type="warning" @say-title="parent">
-            <div slot="heading">这是一篇vue使用</div>
+        <panel :type="article.type" @say-title="parent" v-for="(article,index) in articles" :key="index">
+            <div slot="heading"><span v-html="article.title"></span></div>
             <div slot="body">
-                内容区
-                <p>组件得属性传递</p>
-                <p>slot的用法</p>
-                <p>ref的使用</p>
-                <p>nextTick的用法</p>
+                {{article.content}}
             </div>
-            <div>作者：jiangyou</div>
+            <div v-if="article.auth">{{article.auth}}</div>
         </panel>
     </div>
     <template id="panel">
@@ -52,23 +48,21 @@
                     this.$emit("say-title",this.$refs.head.innerText);
                 }
             },
-            // created () {
-            //    console.log(this.type); 
-            //    this.child="panel-"+this.type;
-            // },
-            //方法2
             computed: {
                 child(){
                     return "panel-"+this.type;
                 }
             },
-            //方法1
-            // data(){
-            //     return {child:this.type}
-            // }
         }
         let vm = new Vue({
             el: "#app",
+            data:{
+                articles:[
+                    {type:"warning",title:"<h2>VUE</h2>",content:"这是VUE的文章",auth:"作者：jiangyou"},
+                    {type:"primary",title:"<h2>react</h2>",content:"这是react的文章",auth:"作者：jiangyou"},
+                    {type:"js",title:"<h2>js</h2>",content:"这是js的文章",auth:"作者：jiangyou"}
+                ]
+            },
             methods: {
                 parent(val){
                     console.log(val);
