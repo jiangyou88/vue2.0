@@ -79,3 +79,10 @@ npm install html-webpack-plugin --save-dev
 ```
 npm install webpack-dev-server --save-dev
 ```
+
+## 安装vue-loader vue-template-compiler
+- vue-loader解析.vue文件的 vue会自动的调用vue-template-compiler
+- vue-template-compiler用来解析vue模板的
+```
+npm install vue-loader vue-template-compiler --save-dev
+```
