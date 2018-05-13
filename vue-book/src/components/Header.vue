@@ -26,7 +26,6 @@ export default {
   text-align: center;
   line-height: 40px;
   font-weight: bold;
-  display: flex;
   top: 0;
   left: 0;
   z-index: 1;
