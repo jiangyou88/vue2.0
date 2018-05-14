@@ -14,3 +14,8 @@ npm install less less-loader axios vuex bootstrap
 ```
 http://www.iconfont.cn
 ```
+
+## 安装swiper
+```
+npm install vue-awesome-swiper --save
+```

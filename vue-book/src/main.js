@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueAwesomeSwiper from 'vue-awesome-swiper';//导入轮播图插件
+import 'swiper/dist/css/swiper.css';
+Vue.use(VueAwesomeSwiper);//使用轮播图插件
 
 Vue.config.productionTip = false
 
