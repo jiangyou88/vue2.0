@@ -24,7 +24,7 @@ http.createServer(function (req, res) {
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.setHeader("X-Powered-By",' 3.2.1')
     if(req.method=="OPTIONS") return res.end();/*让options请求快速返回*/
-    let { pathname, query} = url.parse(req.url);
+    let { pathname, query} = url.parse(req.url,true);//true把query转化成对象
     console.log(url.parse(req.url));
   if (pathname === "/sliders") {
     res.setHeader('Content-Type', 'application/json;charset=utf8');
@@ -37,6 +37,27 @@ http.createServer(function (req, res) {
       res.end(JSON.stringify(hot))
     });
     return;
+  }
+  if(pathname==='/book'){
+    let id=parseInt(query.id);//取出
+    switch(req.method){
+      case 'GET':
+        if(id){//查询一个
+
+        }else{//获取所有图书
+          read(function(books){
+            res.setHeader('Content-Type', 'application/json;charset=utf8');
+            res.end(JSON.stringify(books.reverse()))
+          })
+        }
+        break;
+      case 'POST':
+        break;
+      case 'PUT':
+        break;
+      case 'DELETE':
+        break;
+    }
   }
   
 }).listen(port);

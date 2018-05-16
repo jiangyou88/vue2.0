@@ -12,6 +12,8 @@ import List from '../components/List.vue';
 
 export default new Router({
   routes: [
+    {path:"*",redirect:"/home"},
+    //{path:"/",component:Home},
     {path:"/home",component:Home},
     {path:"/collect",component:Collect},
     {path:"/add",component:Add},
