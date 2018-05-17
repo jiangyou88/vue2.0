@@ -18,6 +18,13 @@ function read(cb){
 // read(function(books){//books代表所有图书
 
 // })
+function write(data,cb){//写入内容
+  fs.writeFile('./book.json',JSON.stringify(data),cb);
+};
+// write({},function(){
+//   console.log("写入成功")
+// })
+
 http.createServer(function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
@@ -25,7 +32,7 @@ http.createServer(function (req, res) {
     res.setHeader("X-Powered-By",' 3.2.1')
     if(req.method=="OPTIONS") return res.end();/*让options请求快速返回*/
     let { pathname, query} = url.parse(req.url,true);//true把query转化成对象
-    console.log(url.parse(req.url));
+    console.log(query);
   if (pathname === "/sliders") {
     res.setHeader('Content-Type', 'application/json;charset=utf8');
     return res.end(JSON.stringify(sliders));
@@ -40,7 +47,7 @@ http.createServer(function (req, res) {
   }
   if(pathname==='/book'){
     let id=parseInt(query.id);//取出
-    switch(req.method){
+    switch(req.method){// ?id=1
       case 'GET':
         if(id){//查询一个
 
@@ -56,8 +63,15 @@ http.createServer(function (req, res) {
       case 'PUT':
         break;
       case 'DELETE':
+        read(function (books){
+          books=books.filter(item=>item.bookId!==id);
+          write(books,function(){
+            res.end(JSON.stringify({}));//删除返回空对象
+          })
+        })
         break;
     }
+    return;
   }
   
 }).listen(port);

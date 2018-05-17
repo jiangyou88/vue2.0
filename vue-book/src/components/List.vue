@@ -10,7 +10,7 @@
               <p>{{book.bookInfo}}</p>
               <b>{{book.bookPrice}}</b>
             </div>
-            <button>删除</button>
+            <button @click.stop="remove(book.bookId)">删除</button>
           </li>
         </ul>
       </div>
@@ -18,7 +18,7 @@
 </template>
 <script>
 import Header from './Header'
-import {getBooks} from '../api';
+import {getBooks,removeBook} from '../api';
 export default {
   data(){
     return {books:[]}
@@ -29,7 +29,12 @@ export default {
   methods: {
     async getData(){
         this.books=await getBooks();
-      }
+    },
+    async remove(id){
+      await removeBook(id);
+      //要删除前台数据
+      this.books=this.books.filter(item=>item.bookId!==id);
+    }
   },
   components: {
     Header
