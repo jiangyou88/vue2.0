@@ -3,7 +3,7 @@
       <Header :back="true">列表页</Header>
       <div class="content">
         <ul>
-          <li v-for="(book,index) in books" :key="index">
+          <router-link v-for="(book,index) in books" :key="index" to="{name:'detail',params:{bid:book.bookId}}" tag="li"> 
             <img :src="book.bookCover" alt="" />
             <div>
               <h4>{{book.bookName}}</h4>
@@ -11,7 +11,8 @@
               <b>{{book.bookPrice}}</b>
             </div>
             <button @click.stop="remove(book.bookId)">删除</button>
-          </li>
+          </router-link>
+          
         </ul>
       </div>
   </div>
