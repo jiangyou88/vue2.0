@@ -3,7 +3,7 @@
       <Header :back="true">列表页</Header>
       <div class="content">
         <ul>
-          <router-link v-for="(book,index) in books" :key="index" to="{name:'detail',params:{bid:book.bookId}}" tag="li"> 
+          <router-link v-for="(book,index) in books" :key="index" :to="{name:'detail',params:{bid:book.bookId}}" tag="li"> 
             <img :src="book.bookCover" alt="" />
             <div>
               <h4>{{book.bookName}}</h4>

@@ -49,7 +49,13 @@ http.createServer(function (req, res) {
     let id=parseInt(query.id);//取出
     switch(req.method){// ?id=1
       case 'GET':
-        if(id){//查询一个
+        if(!isNaN(id)){//查询一个
+          read(function(books){
+            let book=books.find(item=>item.bookId===id);
+            if(!book) book={};//如果没找到则是undefined
+            res.setHeader('Content-Type', 'application/json;charset=utf8');
+            res.end(JSON.stringify(book));
+          })
 
         }else{//获取所有图书
           read(function(books){
