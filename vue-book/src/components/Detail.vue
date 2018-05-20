@@ -7,15 +7,15 @@
         <input type="text" v-model="book.bookName" id="bookName" />
       </li>
       <li>
-        <label for="bookName">书的信息</label>
+        <label for="bookInfo">书的信息</label>
         <input type="text" v-model="book.bookInfo" id="bookInfo" />
       </li>
       <li>
-        <label for="bookName">书的价格</label>
+        <label for="bookPrice">书的价格</label>
         <input type="text" v-model.number="book.bookPrice" id="bookPrice" />
       </li>
     </ul>
-    <button>确认修改</button>
+    <button @click="updated">确认修改</button>
   </div>
 </template>
 <script>
@@ -36,10 +36,16 @@ export default {
     this.getData();
   },
   methods: {
+    //点击修改图书信息
+    async updated () {
+       await updateBook(this.bid,this.book);
+       this.$router.push('/list');//修改完成后跳转页面
+    },
     async getData() {
       //通过id找到某一项后 赋给book
       this.book = await findOneBook(this.bid);
       //如果是空对象 需要跳转回列表页
+      //$router是方法 $route是属性
       Object.keys(this.book).length > 0 ? void 0 : this.$router.push("/list");
     }
   },
@@ -78,7 +84,7 @@ ul {
     display: block;
       width: 60px;
       height: 35px;
-      background: orangered;
+      background: #afd9ee;
       color: #fff;
       border:none;
       border-radius: 4px;
