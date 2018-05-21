@@ -11,6 +11,7 @@ Vue.use(Router)
 // import List from '../components/List.vue';
 
 export default new Router({
+  mode:'history',//去掉url后面#号
   routes: [
     {
       path:"/",
