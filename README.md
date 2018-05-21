@@ -28,3 +28,4 @@ npm install vue-awesome-swiper --save
   - 2.在需要使用这个组件得父级中引用这个组件
   - 3.在组件中注册
   - 4.以标签的形式引入
+  ## 路由元信息
