@@ -1,10 +1,11 @@
 <template>
   <div>
       <Header :back="true">列表页</Header>
-      <div class="content">
+      <!-- scrollTop+元素.clientHeight+20==元素.scrollHeight -->
+      <div class="content" ref="scroll" @scroll="loadMore">
         <ul>
           <router-link v-for="(book,index) in books" :key="index" :to="{name:'detail',params:{bid:book.bookId}}" tag="li"> 
-            <img :src="book.bookCover" alt="" />
+            <img v-lazy="book.bookCover" alt="" />
             <div>
               <h4>{{book.bookName}}</h4>
               <p>{{book.bookInfo}}</p>
@@ -14,22 +15,48 @@
           </router-link>
           
         </ul>
+        <div @click="more" class="more">加载更多</div>
       </div>
   </div>
 </template>
 <script>
 import Header from './Header'
-import {getBooks,removeBook} from '../api';
+import {pagination,removeBook} from '../api';
 export default {
   data(){
-    return {books:[]}
+    //offet代表的是偏移量 hasMore 是否有更多 默认不是正在加载
+    return {books:[],offset:0,hasMore:true,isLoading:false}
   },
   created () {
       this.getData();
   },
   methods: {
+    loadMore(){
+      //触发scroll事件 可能触发n次 先进来开一个定时器，下次触发时将上一次定时器清除掉
+      clearTimeout(this.timer);
+      this.timer = setTimeout(()=>{//函数节流 防抖
+             //卷去的高度 当前可见区域  总高
+         let {scrollTop,clientHeight,scrollHeight}= this.$refs.scroll;
+         if(scrollTop+clientHeight+20>scrollHeight){
+           this.getData();//加载更多
+         }
+      },13)
+     
+    },
+    more(){
+      this.getData();
+    },
     async getData(){
-        this.books=await getBooks();
+
+      if(this.hasMore&&!this.isLoading){//有更多的时候获取数据
+        this.isLoading=true;
+        let {hasMore,books}=await pagination(this.offset);
+        this.books=[...this.books,...books];//获取的书放到books属性上
+        this.hasMore=hasMore;
+        this.isLoading=false;//加载完毕
+        this.offset=this.books.length;//维护偏移量 就是总书的长度
+      }
+        
     },
     async remove(id){
       await removeBook(id);
@@ -75,6 +102,14 @@ export default {
       height: 150px;
     }
   }
+}
+.more{
+  margin: 10px;
+  background: #2afedd;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
 }
 </style>
 

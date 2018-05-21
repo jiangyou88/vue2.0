@@ -24,15 +24,30 @@ function write(data,cb){//写入内容
 // write({},function(){
 //   console.log("写入成功")
 // })
-
+let pageSize=5;//每页显示五个
 http.createServer(function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.setHeader("X-Powered-By",' 3.2.1')
+  //上线就不需要解决跨越了
+    // res.setHeader("Access-Control-Allow-Origin", "*");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    // res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // res.setHeader("X-Powered-By",' 3.2.1')
     if(req.method=="OPTIONS") return res.end();/*让options请求快速返回*/
     let { pathname, query} = url.parse(req.url,true);//true把query转化成对象
-    console.log(query);
+    if(pathname==='/page'){
+      let offset=parseInt(query.offset)||0;//拿到当前前端传递的值
+      console.log(offset);
+      read(function(books){
+        //每次偏移量 在偏移的基础上增加五条
+        let result=books.reverse().slice(offset,offset+pageSize);//数据倒序
+        let hasMore=true;//默认有更多
+        if(books.length<=offset+pageSize){//已经显示的数据 大于了总共条数
+          hasMore=false;
+        }
+        res.setHeader('Content-Type', 'application/json;charset=utf8');
+        res.end(JSON.stringify({hasMore,books:result}));
+      })
+      return;
+    }
   if (pathname === "/sliders") {
     res.setHeader('Content-Type', 'application/json;charset=utf8');
     return res.end(JSON.stringify(sliders));
@@ -115,5 +130,20 @@ http.createServer(function (req, res) {
     return;
   }
   
+  //读取一个路径 http://localhost:3000/index.html#/home
+  fs.stat('.'+pathname,function(err,stats){
+    if(err){
+      // res.statusCode=404;
+      // res.end('NOT FOUND');
+      fs.createReadStream('index.html').pipe(res);
+    }else{//如果是目录会报错
+      if(stats.isDirectory){
+        let p=require('path').join('.'+pathname,'./index.html');
+        fs.createReadStream('.'+pathname).pipe(p);
+      }else{
+        fs.createReadStream('.'+pathname).pipe(res);
+      }
+    }
+  });
 }).listen(port);
 
