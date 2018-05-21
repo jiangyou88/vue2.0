@@ -12,13 +12,14 @@ import List from '../components/List.vue';
 
 export default new Router({
   routes: [
-    {path:"*",redirect:"/home"},
+    {path:"/",redirect:"/home"},
     //{path:"/",component:Home},
-    {path:"/home",component:Home},
+    {path:"/home",component:Home,meta:{keepAlice:true}},
     {path:"/collect",component:Collect},
     {path:"/add",component:Add},
     // /detail/1 {bid:1} 路径参数 必须有但是可以随机
     {path:"/detail/:bid",component:Detail,name:"detail"},
-    {path:"/list",component:List}
+    {path:"/list",component:List},
+    {path:"*",redirect:"/home"}
   ]
 })
