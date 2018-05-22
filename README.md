@@ -36,3 +36,8 @@ npm install vue-awesome-swiper --save
 - 后台返回还要告诉前端是否有更多的数据 hasMore:false
 
 ## coding split 代码分割
+
+## vuex
+- vuex 平级组件交互，找共同的父级解决，跨组件交互，eventBus混乱(发布订阅)
+- vuex主要借鉴了 flux redux，vuex只能在vue中使用(单独为vue开发的)
+- vuex为了大型项目，主要是(状态)管理，将数据统一管理

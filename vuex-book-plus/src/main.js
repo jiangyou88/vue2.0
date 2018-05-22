@@ -15,7 +15,13 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+//在进入路由之前 每一次都会执行此方法,全局钩子，拦截功能
+router.beforeEach(function(to,from,next){
+  console.log(to);
+  document.title=to.meta.title;
+  next();
+})
 
 /* eslint-disable no-new */
 new Vue({
