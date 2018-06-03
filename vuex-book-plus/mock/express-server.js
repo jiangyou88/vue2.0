@@ -44,6 +44,12 @@ app.get('/page',function(req,res){
 app.get('/sliders',function(req,res){
     res.json(sliders);
 });
+app.get('/hot',function(req,res){
+    read(function(books){
+        let hot=books.reverse().slice(0,6);
+        res.json(hot);
+    })
+})
 app.get('/book',function(req,res){
     let id=parseInt(req.query.id);
     if(!isNaN(id)){
@@ -77,6 +83,8 @@ app.delete('/book',function(req,res){
     });
 });
 app.put('/book',function(req,res){
+    console.log(req.query.id);
+    let id=parseInt(req.query.id);
     if(req.query.id){
         let book=req.body;
         read(function(books){

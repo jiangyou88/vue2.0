@@ -27,10 +27,10 @@ function write(data,cb){//写入内容
 let pageSize=5;//每页显示五个
 http.createServer(function (req, res) {
   //上线就不需要解决跨越了
-    // res.setHeader("Access-Control-Allow-Origin", "*");
-    // res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    // res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    // res.setHeader("X-Powered-By",' 3.2.1')
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.setHeader("X-Powered-By",' 3.2.1')
     if(req.method=="OPTIONS") return res.end();/*让options请求快速返回*/
     let { pathname, query} = url.parse(req.url,true);//true把query转化成对象
     if(pathname==='/page'){

@@ -12,6 +12,7 @@
               <b>{{book.bookPrice}}</b>
             </div>
             <button @click.stop="remove(book.bookId)">删除</button>
+            <button @click.stop="addCart(book)">添加</button>
           </router-link>
           
         </ul>
@@ -22,6 +23,7 @@
 <script>
 import Header from './Header'
 import {pagination,removeBook} from '../api';
+import * as Types from '../store/mutations-type.js';
 export default {
   data(){
     //offet代表的是偏移量 hasMore 是否有更多 默认不是正在加载
@@ -31,6 +33,9 @@ export default {
       this.getData();
   },
   methods: {
+    addCart(book){
+      this.$store.commit(Types.ADD_CART,book);
+    },
     loadMore(){
       //触发scroll事件 可能触发n次 先进来开一个定时器，下次触发时将上一次定时器清除掉
       clearTimeout(this.timer);

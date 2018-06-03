@@ -1,15 +1,6 @@
-document.body.innerHTML='hello';
-
 import Vue from 'vue';
-import Vuex from 'vuex';
 import App from './App.vue';
-Vue.use(Vuex);
-//容器是唯一的
-const state={count:0};
-let store=new Vuex.Store({
-    state
-});
-
+import store from './store';
 //计数器
 new Vue({
     el:'#app',
