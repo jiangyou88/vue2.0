@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { getList } from "../api";
+import { getLists } from "../api";
 export default {
   name: "Index",
   data() {
@@ -18,7 +18,8 @@ export default {
   },
   methods: {
     async getListDate() {
-      this.lists = await getList();
+      this.lists = await getLists();
+      console.log(this.lists);
     }
   }
 };
