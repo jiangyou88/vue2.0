@@ -1,12 +1,16 @@
 ## 初始化项目
-'''
+```
 npm install vue-cli -g
 vue init webpack vue-todos
-'''
+```
 ## 安装less
-'''
+```
 npm install less style-loader css-loader less-loader -D
-'''
+```
+## 安装时间格式化包moment.js
+```
+npm install moment -S
+```
 
 # vue-todos
 
