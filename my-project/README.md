@@ -1,3 +1,6 @@
+## 地址
+- https://github.com/dotnetage
+
 - build 存放用于编译用的webpack配置与相关的辅助工具代码
 - config 存放三大环境配置文件，用于设定环境变量和必要的路径信息
 - test 存放E2E测试与单元测试文件以及相关的配置文件
@@ -29,6 +32,49 @@ npm run dev
 
 ## 2.编译生产环境
 - 当项目准备发布时，在命令行键入 npm run build
+
+## webpack的目标：
+- 把依赖树按需分割
+- 把初始加载时间控制在较低的水平
+- 每个静态资源都应该成为一个模块
+- 能把第三方库集成到项目里成为一个模块
+- 能定制模块打包器的每个部分
+- 能适用于大型项目
+
+## 加载器
+- vue-loader 用于加载与编译.vue文件
+- vue-style-loader 用于加载.vue文件中的样式
+- style-loader 用于将样式直接插入到页面的<style>内
+- css-loader 用于加载.css样式表文件
+- less-loader 用于编译于加载.less文件(需要依赖less库)
+- babel-loader 用于将ES6编译成为浏览器兼容的ES5
+- file-loader 用于直接加载文件
+- url-loader 用于加载URL指定的文件，多用于字体与图片的加载
+- json-loader 用于加载.json文件为JS实例
+
+
+## 设计原型
+- Sketch
+
+## 3.1 vue-router
+- 从传统意义上说，路由就是定义一系列的访问地址规则，路由引擎根据这些规则匹配并找到对应的处理页面，然后将请求转发给页面进行处理。可以说所有的后端开发都是这样做的，而前端路由是不存在"请求"一说的
+- 前端路由是直接找到与地址匹配的一个组件或对象并将其渲染出来。
+- 改变浏览器地址而不向服务器发出请求有两种做法：
+ - 1.是在地址中加入#以欺骗浏览器，地址的干部是由于正在进行页内导航
+ - 2.是使用HTML5的window.history功能，使用URL的Hash来模拟一个完整的URL
+
+## 路由配置
+- 首页 /home Home.vue
+- 分类 /explorer Explorer.vue
+- 购物车 /cart Cart.vue
+- 我 /me Me.vue
+
+## 路由与导航
+- router-view 渲染路径匹配到的视图组件，它还可以内嵌自己的<router-vuew>,根据嵌套路径渲染嵌套组件
+- router-link 支持用户在具有路由功能的应用中(点击)导航
+
+
+
 # my-project
 
 > A Vue.js project
