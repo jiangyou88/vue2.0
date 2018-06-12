@@ -27,11 +27,18 @@
             <div>我</div>
           </router-link>
         </li>
+        <li>
+          <router-link :to="{name:'BookDetails',params:{id:'1'}}">
+            <div>详情</div>
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="content">
       <!-- 用router-view渲染视图 -->
-      <router-view/>
+      <transition name="slide-fade">
+        <router-view/>
+      </transition>
     </div>  
   </div>
 </template>
@@ -50,5 +57,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.slide-fade-enter-active{
+  transition: all .3s ease;
+}
+.slide-fade-leave-active{
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter,.slide-fade-leave-active{
+  transform: translateX(-430px);
+  opacity: 0;
 }
 </style>

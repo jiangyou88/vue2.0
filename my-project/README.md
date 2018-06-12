@@ -63,7 +63,7 @@ npm run dev
  - 1.是在地址中加入#以欺骗浏览器，地址的干部是由于正在进行页内导航
  - 2.是使用HTML5的window.history功能，使用URL的Hash来模拟一个完整的URL
 
-## 路由配置
+## 路由配置（一级）
 - 首页 /home Home.vue
 - 分类 /explorer Explorer.vue
 - 购物车 /cart Cart.vue
@@ -73,6 +73,12 @@ npm run dev
 - router-view 渲染路径匹配到的视图组件，它还可以内嵌自己的<router-vuew>,根据嵌套路径渲染嵌套组件
 - router-link 支持用户在具有路由功能的应用中(点击)导航
 
+## 路由配置（二级）
+- 图书详情(BookDetails)
+- 结算(Checkout)
+- 收货地址(Address)
+- 个人资料(Profile)
+- 订单(Orders)
 
 
 # my-project

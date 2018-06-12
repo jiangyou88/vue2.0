@@ -35,6 +35,12 @@ export default new Router({
       name:'Me',
       component:()=> import('../components/Me.vue'),
       meta:{title:'我'}
+    },
+    {
+      path:'/book/:id',
+      name:'BookDetails',
+      component:()=>import('../components/BookDetails.vue'),
+      meta:{title:'详情'}
     }
   ]
 })

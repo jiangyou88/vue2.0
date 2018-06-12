@@ -1,5 +1,5 @@
 <template>
-    <div>我</div>
+    <div>详情</div>
 </template>
 <script>
 export default {
@@ -9,4 +9,5 @@ export default {
 <style lang="less" scoped>
 
 </style>
+
 
