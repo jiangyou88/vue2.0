@@ -4,7 +4,7 @@
 - static 存放项目所需要的静态资源文件
 - dist 存放运行npm run build指令后的生产环境输出文件，可直接部署到服务器对应的静态资源文件夹内，该文件夹只有在运行build之后才会生成
 
-## 编译开发环境
+## 1. 编译开发环境
 - 在开发环境下通过以下指令加载运行Vue项目
 ```
 npm run dev
@@ -21,7 +21,14 @@ npm run dev
  - webpack.dev.conf.js 开发环境专用的webpack配置项
  - webpack.prod.conf.js 生产环境专用的webpack配置项
 
+## 配置热加载
+## 配置代理服务器
+## 配置静态资源
+## 加载开发服务器
+--------------- 以上就是npm run dev的完整执行思路---------------------
 
+## 2.编译生产环境
+- 当项目准备发布时，在命令行键入 npm run build
 # my-project
 
 > A Vue.js project
