@@ -4,25 +4,25 @@
       <ul>
         <li>
           <!-- 使用router-link指向定义的path -->
-          <router-link to="/home">
+          <router-link :to="{name:'Home'}">
             <div><img src="./assets/images/home.svg" /></div>
             <div>首页</div>
           </router-link>
         </li>
         <li>
-          <router-link to="/explorer">
+          <router-link :to="{name:'Explorer'}">
             <div><img src="./assets/images/category.svg" /></div>
             <div>分类</div>
           </router-link>
         </li>
         <li>
-          <router-link to="/cart">
+          <router-link :to="{name:'Cart'}">
             <div><img src="./assets/images/cart.svg" /></div>
             <div>购物车</div>
           </router-link>
         </li>
         <li>
-          <router-link to="/me">
+          <router-link :to="{name:'Me'}">
             <div><img src="./assets/images/me.svg" /></div>
             <div>我</div>
           </router-link>
@@ -32,8 +32,7 @@
     <div class="content">
       <!-- 用router-view渲染视图 -->
       <router-view/>
-    </div>
-    
+    </div>  
   </div>
 </template>
 
