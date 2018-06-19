@@ -76,6 +76,7 @@ export default {
             border-radius .06rem
             margin-top .2rem
             color #fff
+            ellipsis()
         }
     }
 }
