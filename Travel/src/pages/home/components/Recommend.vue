@@ -2,7 +2,7 @@
     <div>
         <div class="title">热销推荐</div>
         <ul>
-            <li class="item border-bottom" v-for="item in recommendList" :key="item.id">
+            <li class="item border-bottom" v-for="item in list" :key="item.id">
                 <img :src="item.imgUrl" />
                 <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
@@ -16,29 +16,8 @@
 <script>
 export default {
     name:'HomeRecommend',
-    data(){
-        return {
-            recommendList:[
-            {
-                id:1,
-                imgUrl:'http://img1.qunarzz.com/sight/p0/1806/4f/4f448c94f180b36da3.water.jpg_200x200_9ef8867f.jpg',
-                title:'36kr没想到未来城',
-                desc:'来北京必去的景点非这些地方莫属'
-            },
-            {
-                id:2,
-                imgUrl:'http://img1.qunarzz.com/sight/p0/1806/4f/4f448c94f180b36da3.water.jpg_200x200_9ef8867f.jpg',
-                title:'36kr没想到未来城',
-                desc:'来北京必去的景点非这些地方莫属'
-            },
-            {
-                id:3,
-                imgUrl:'http://img1.qunarzz.com/sight/p0/1806/4f/4f448c94f180b36da3.water.jpg_200x200_9ef8867f.jpg',
-                title:'36kr没想到未来城',
-                desc:'来北京必去的景点非这些地方莫属'
-            }
-        ]
-        }
+    props:{
+        list: Array
     }
 }
 </script>
