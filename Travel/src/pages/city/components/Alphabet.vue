@@ -1,11 +1,6 @@
 <template>
     <ul class="list">
-        <li class="item" v-for="(item,key) in citiels" :key="key">{{key}}</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
+        <li class="item" v-for="item in letters" :key="item" @click="handleLetterClick" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">{{item}}</li>
     </ul>
 </template>
 <script>
@@ -13,6 +8,39 @@ export default {
   name: "CityAlphabet",
   props: {
       citiels: Object
+  },
+  data() {
+      return {
+          touchStatus: false
+      }
+  },
+  computed: {
+      letters () {
+          const letters = []
+          for(let i in this.citiels){
+              letters.push(i)
+          }
+          return letters
+      }
+  },
+  methods: {
+      handleLetterClick(e){
+          this.$emit('change',e.target.innerText)
+          //console.log(e.target.innerText)
+      },
+      handleTouchStart () {
+          this.touchStatus=true
+      },
+      handleTouchMove (e) {
+          const touchY = e.touches[0].clientY - 79
+          const index = Math.floor((touchY - this.startY) / 20)
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('change', this.letters[index])
+          }
+      },
+      handleTouchEnd () {
+          this.touchStatus= false
+      }
   }
 };
 </script>
