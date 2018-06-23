@@ -7,19 +7,12 @@ const path = require('path')
 module.exports = {
   dev: {
 
-    // 静态资源文件夹
+    // Paths fiddler charles
     assetsSubDirectory: 'static',
-    // 发布路径
-    assetsPublicPath: '/',
-    // 代理配置表，在这里可以配置特定的请求代理到对应的API接口
+    assetsPublicPath: '/project',
     proxyTable: {
-      '/api':{
-        target:'http://localhost:8080',// 接口的域名
-        // secure: false,  // 如果是https接口，需要配置这个参数
-        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-        pathRewrite: {
-          '^/api': '/static/mock'
-        }
+      '/api': {
+        target: 'http://localhost:80'
       }
     },
 
@@ -34,7 +27,7 @@ module.exports = {
     // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
-    //useEslint: true,
+    useEslint: true,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
