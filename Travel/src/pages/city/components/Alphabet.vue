@@ -1,6 +1,6 @@
 <template>
     <ul class="list">
-        <li class="item">A</li>
+        <li class="item" v-for="(item,key) in citiels" :key="key">{{key}}</li>
         <li class="item">A</li>
         <li class="item">A</li>
         <li class="item">A</li>
@@ -10,7 +10,10 @@
 </template>
 <script>
 export default {
-  name: "CityAlphabet"
+  name: "CityAlphabet",
+  props: {
+      citiels: Object
+  }
 };
 </script>
 <style lang="stylus" scoped>
