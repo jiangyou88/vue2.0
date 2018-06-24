@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div class="header-abs">
-            <router-link tag="div" to="/" v-show="showAbs">
-                <div class="iconfont header-abs-back">&#xe624;</div>
-            </router-link>
-        </div>
+        <router-link tag="div" to="/" v-show="showAbs" class="header-abs">
+            <div class="iconfont header-abs-back">&#xe624;</div>
+        </router-link>
         <div class="header-fixed" v-show="!showAbs" :style="opacityStyle">
             <router-link tag="div" to="/">
                 <div class="iconfont header-fixed-back">&#xe624;</div>
@@ -38,8 +36,12 @@ export default {
       console.log(document.documentElement.scrollTop);
     }
   },
-  activated() {
+  activated() {//keep-link
     window.addEventListener("scroll", this.handleScroll);
+  },
+  deactivated() {
+    //页面即将被替换成新的页面
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
