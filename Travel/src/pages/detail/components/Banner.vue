@@ -1,23 +1,27 @@
 <template>
     <div>
         <div class="banner" @click="handleBannerClick">
-            <img class="banner-img" src="http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg" />
+            <img class="banner-img" :src="bannerImg" />
             <div class="banner-info">
-                <div class="banner-title">南山滑雪场</div>
-                <div class="banner-number"><span class="iconfont banner-icon">&#xe692;</span>39</div>
+                <div class="banner-title">{{sightName}}</div>
+                <div class="banner-number"><span class="iconfont banner-icon">&#xe692;</span>{{bannerImg.length}}</div>
             </div>
         </div>
-        <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+        <common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose" v-if="gallaryImgs.length>0"></common-gallary>
     </div>
 </template>
 <script>
 import CommonGallary from '../../../common/gallary/Gallary'
 export default {
   name: "Banner",
+  props: {
+      sightName: String,
+      bannerImg: String,
+      gallaryImgs: Array
+  },
   data() {
       return {
-          imgs: ['http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg','http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg'],
-          showGallary: false
+           showGallary: false
       }
   },
   methods: {
