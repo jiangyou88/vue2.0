@@ -3,7 +3,7 @@
         <div class="header-left"><div class="iconfont back-icon">&#xe624;</div></div>
         <div class="header-input"><span class="iconfont">&#xe632;</span>输入城市/景点</div>
         <router-link to="/city">
-            <div class="header-right">{{city}}<span class="iconfont arrow-icon">&#xe603;</span></div>
+            <div class="header-right">{{this.$store.state.city}}<span class="iconfont arrow-icon">&#xe603;</span></div>
         </router-link>
     </div>
 </template>
